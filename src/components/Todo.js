@@ -4,11 +4,20 @@ import React, { useState } from "react";
 function Todo(props) {
     const [isEditing, setEditing] = useState(false);
     const [newName, setNewName] = useState('');
+    function handleChange(e) {
+        setNewName(e.target.value);
+    }
+    function handleSubmit(e) {
+        preventDefault(e);
+        props.editTask(props.id, newName);
+        setNewName("");
+        setEditing(false);
+    }
     const editingTemplate = (
-        <form>
+        <form onSubmit={handleSubmit}>
             <label htmlFor={props.id}>New name for {props.name}</label>
-            <input id={props.id} type="text" />
-            <button type="button" onClick={()=>setEditing(false)}>Cancel</button>
+            <input id={props.id} type="text" value={newName} onChange={handleChange} />
+            <button type="button" onClick={() => setEditing(false)}>Cancel</button>
             <button type="submit">Save</button>
         </form>
     );
