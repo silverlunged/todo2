@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { nanoid } from 'nanoid';
+
+const DATA = [
+  {id: "todo-0", name: "Eat the dog"},
+  {id: "todo-1", name: "Wash the cat"}
+]
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App tasks={DATA}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
